@@ -165,6 +165,10 @@
               hidden: false
             },
             {
+              name: 'transform-origin',
+              hidden: false
+            },
+            {
               name: 'zIndex',
               hidden: false
             }

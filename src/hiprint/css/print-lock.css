@@ -108,6 +108,9 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+.hiprint-printElement{
+  transform-origin:left top;
+}
 
 .design .hiprint-printElement-text-content {
   border: 1px dashed rgb(206, 188, 188);
