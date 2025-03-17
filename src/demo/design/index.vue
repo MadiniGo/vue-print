@@ -67,6 +67,8 @@
         <json-view :template="template"/>
       </a-space>
       <a-space style="margin-bottom: 10px">
+        <a-button type="primary" @click="refresh"> 保存刷新
+        </a-button>
         <a-button type="primary" @click="exportPdf('')">
           导出获取pdf(Blob)
         </a-button>
@@ -99,7 +101,6 @@
         <a-button type="primary" @click="ippRequestPrint">
           ipp请求 打印测试
         </a-button>
-        <div>元素参数操作:</div>
         <a-button type="primary" @click="setOptionConfig(-1)"> 测试隐藏参数[看代码]
         </a-button>
         <a-button type="primary" @click="setOptionConfig(1)"> 隐藏[文本] "边框"、"高级"
@@ -112,6 +113,7 @@
         </a-button>
         <a-button type="primary" @click="setOptionConfig(0)"> 还原配置
         </a-button>
+
       </a-space>
       <a-space style="margin-bottom: 10px">
         <a-textarea style="width:30vw" v-model="jsonIn" @pressEnter="updateJson"
@@ -301,7 +303,7 @@
           </a-row>
         </a-card>
       </a-col>
-      <a-col :span="15">
+      <a-col :span="15" v-if="renderDesign">
         <a-card class="card-design">
           <div id="hiprint-printTemplate" class="hiprint-printTemplate"></div>
         </a-card>
@@ -381,6 +383,8 @@ export default {
       // 导入导出json
       jsonIn: '',
       jsonOut: '',
+      panel:null,
+      renderDesign:true
     }
   },
   computed: {
@@ -453,6 +457,7 @@ export default {
       else {
         panel = panels('./panel.js').default
       }
+      this.panel = panel
     },
     /**
      * @description: 加载版本
@@ -495,7 +500,7 @@ export default {
       $('#hiprint-printTemplate').empty()
       let that = this;
       this.template = hiprintTemplate = new hiprint.PrintTemplate({
-        template: panel,
+        template: that.panel,
         // 图片选择功能
         onImageChooseClick: (target) => {
           // 测试 3秒后修改图片地址值
@@ -547,6 +552,17 @@ export default {
       console.log(hiprintTemplate);
       // 获取当前放大比例, 当zoom时传true 才会有
       this.scaleValue = hiprintTemplate.editingPanel.scale || 1;
+    },
+    refresh(){
+      this.panel = this.template.getJson();  
+      this.template = null;
+      this.renderDesign = false;
+      this.$nextTick(()=>{
+      this.renderDesign = true;
+      });
+      setTimeout(()=>{
+        this.init();
+      })
     },
     setOptionConfig(type) {
       switch (type) {

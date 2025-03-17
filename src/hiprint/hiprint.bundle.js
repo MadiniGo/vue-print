@@ -1048,7 +1048,18 @@ var hiprint = function (t) {
         var p = this.getData(e),
           s = this.createTarget(this.getTitle(), p);
         if ("none" == t.panelPageRule && (r + this.options.getHeight()) > a) this.updatePanelHeight(r + this.options.getHeight(), t);
-        this.updateTargetSize(s), this.css(s, p), s.css("position", "absolute"), s.css("left", this.options.displayLeft()), s.css("top", r + "pt"), o.push(new _dto_PaperHtmlResult__WEBPACK_IMPORTED_MODULE_3__.a({
+        console.log(this.options)
+        this.updateTargetSize(s), this.css(s, p), s.css("position", "absolute");
+        //#####初始化旋转90度后自动纠正一下定位
+        if(this.options.transform > 45 &&  this.options['transform-origin']!=='center'){
+          var computeLeft = this.options.left + this.options.height;
+          console.log("tr",this.options.left );
+          s.css("left", computeLeft + 'pt')
+        }else{
+         s.css("left", this.options.displayLeft())
+        }
+        s.css("top", r + "pt");
+        o.push(new _dto_PaperHtmlResult__WEBPACK_IMPORTED_MODULE_3__.a({
           target: s,
           printLine: r + this.options.getHeight(),
           referenceElement: new _PrintReferenceElement__WEBPACK_IMPORTED_MODULE_5__.a({
@@ -10730,7 +10741,6 @@ var hiprint = function (t) {
           n.onPanelAddClick && (this.onPanelAddClick = n.onPanelAddClick),
         n.settingContainer && new ut(this, n.settingContainer), n.paginationContainer && (this.printPaginationCreator = new dt(n.paginationContainer, this), this.printPaginationCreator.buildPagination()), this.initAutoSave();
       }
-
       return t.prototype.design = function (t, e) {
         var n = this;
 
