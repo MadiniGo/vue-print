@@ -719,7 +719,13 @@ var hiprint = function (t) {
         var designTarget = this.designTarget ? this.designTarget[0] : null;
         if(designTarget && getBracketContent(designTarget.style.transform)){
           let designTargetH = parseFloat(designTarget.style.height);
-          t = t - designTargetH;
+          //######缩放会导致x坐标消失 todo
+          if(t == null){
+
+            var designTargetLeft = parseFloat(designTarget.style.left);
+          }else{
+            t = t - designTargetH;
+          }
         }
         this.options.setLeft(t), this.options.setTop(e), this.options.copyDesignTopFromTop(), this.options.setWidth(n), this.options.setHeight(i);
       }, BasePrintElement.prototype.initSizeByHtml = function (t) {
@@ -6065,6 +6071,7 @@ var hiprint = function (t) {
             return n.designPaper.scale || 1
           },
           onResize: function onResize(t, i, o, r, a) {
+            //resize-panel-adjust
             n.onResize(t, i, o, r, a), n.hitable && n.hitable.updateColumnGrips(), n.createLineOfPosition(e);
           },
           onStopResize: function onStopResize(r) {
@@ -7723,7 +7730,12 @@ var hiprint = function (t) {
             height: "100%"
           }), u.css({
             height: i.numHandlerText(p + E)
-          }), i.options.onResize(e, i.numHandler(p + E), void 0, void 0, void 0);
+          });
+          if(t[0] && t[0].offsetParent && getBracketContent(t[0].offsetParent.style.transform)){
+            i.options.onResize(e, void 0, i.numHandler(p + E), void 0, void 0);
+          }else{
+            i.options.onResize(e, i.numHandler(p + E), void 0, void 0, void 0);
+          }
         } else if (rt) { // 旋转
           t.css({height: "100%"});
           var eo = e.pageX, er = e.pageY;
