@@ -9134,7 +9134,7 @@ var hiprint = function (t) {
             var divMode = this.options.getBarTextMode() == 'text';
             // pub-beta 0.0.57-beta22 移除插件通过 div 添加的文本元素，默认使用 JsBarcode 生成条形码文本
             a.html('<svg width="100%" display="block" height="100%" class="hibarcode_imgcode" preserveAspectRatio="none slice"></svg>');
-            //文本为barcode默认为hideTitle
+            //#####################文本为barcode默认为hideTitle
             this.options.hideTitle = true;
             if (divMode) {
               a.append(`<div class="hibarcode_displayValue" style="white-space:nowrap">`);
@@ -9178,7 +9178,7 @@ var hiprint = function (t) {
                   "height": Math.min(width, height) + 'pt',
                   "margin": "auto"
                 })
-                //文本为qrcode默认为hideTitle
+                ////#####################文本为qrcode默认为hideTitle
                 this.options.hideTitle = true;
                 new QRCode(box[0], {
                   width: "100%",
