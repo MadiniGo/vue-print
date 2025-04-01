@@ -1054,7 +1054,7 @@ var hiprint = function (t) {
         var p = this.getData(e),
           s = this.createTarget(this.getTitle(), p);
         if ("none" == t.panelPageRule && (r + this.options.getHeight()) > a) this.updatePanelHeight(r + this.options.getHeight(), t);
-        console.log(this.options)
+        // console.log(this.options)
         this.updateTargetSize(s), this.css(s, p), s.css("position", "absolute");
         //#####初始化旋转90度后自动纠正一下定位
         if(this.options.transform > 45 &&  this.options['transform-origin']!=='center'){
@@ -9071,9 +9071,14 @@ var hiprint = function (t) {
     D = function (t) {
       function e(e, n) {
         var i = t.call(this, e) || this;
-        return i.options = new O(n), i.options.setDefault(new O(p.a.instance.text.default).getPrintElementOptionEntity()), i;
+        i.options = new O(n)
+        i.options.setDefault(new O(p.a.instance.text.default).getPrintElementOptionEntity())
+        if(i.options.getTextType && (i.options.getTextType() === 'barcode' || i.options.getTextType() === 'qrcode')){
+          i.options.hideTitle = true;
+        }
+        console.log(i.options,i.options.getTextType());
+        return i;
       }
-
       return H(e, t), e.prototype.getDesignTarget = function (e) {
         return t.prototype.getDesignTarget.call(this, e);
       }, e.prototype.getProxyTarget = function (t) {
@@ -9129,6 +9134,8 @@ var hiprint = function (t) {
             var divMode = this.options.getBarTextMode() == 'text';
             // pub-beta 0.0.57-beta22 移除插件通过 div 添加的文本元素，默认使用 JsBarcode 生成条形码文本
             a.html('<svg width="100%" display="block" height="100%" class="hibarcode_imgcode" preserveAspectRatio="none slice"></svg>');
+            //文本为barcode默认为hideTitle
+            this.options.hideTitle = true;
             if (divMode) {
               a.append(`<div class="hibarcode_displayValue" style="white-space:nowrap">`);
             }
@@ -9171,6 +9178,8 @@ var hiprint = function (t) {
                   "height": Math.min(width, height) + 'pt',
                   "margin": "auto"
                 })
+                //文本为qrcode默认为hideTitle
+                this.options.hideTitle = true;
                 new QRCode(box[0], {
                   width: "100%",
                   height: "100%",
@@ -9480,7 +9489,7 @@ var hiprint = function (t) {
             barcolor: this.options.barColor || "#000",
           })
           // pub-beta 0.0.57-beta22 优化了条码自动调整宽度的逻辑，title 文本改为使用 bwipjs 文本内部实现
-          barcode = $(barcode)
+          barcode = $(barcode);
           // pub-beta 0.0.57-beta22 svg 元素需要添加 preserveAspectRatio 属性，使其横向可以自适应缩放
           barcode.attr("preserveAspectRatio", "none slice")
           let svgWidth = barcode[0].attributes.viewBox.value.split(" ")[2]; // 通过 viewBox 属性获取 bwipjs 内部生成的 svg 宽度
