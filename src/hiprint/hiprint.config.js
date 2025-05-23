@@ -2052,9 +2052,9 @@
         height: 40,
         title: '条形码',
         barcodeType: 'code128',
-        testData: 'barcode',
-        hideTitle:true
-        // barAutoWidth: 'true' 这里必须使用字符串
+        testData: '123333333',
+        hideTitle:true,
+        barAutoWidth: 'true' 
       }
     },
     qrcode: {
@@ -2237,7 +2237,7 @@
         title: '二维码',
         qrcodeType: 'qrcode',
         testData: 'qrcode',
-        hideTitle:true
+        hideTitle: true
       }
     }
   }
