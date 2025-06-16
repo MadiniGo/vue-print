@@ -2053,7 +2053,7 @@
         title: '条形码',
         barcodeType: 'code128',
         testData: '123333333',
-        hideTitle:true,
+        hideTitle:"true",
         barAutoWidth: 'true' 
       }
     },
@@ -2237,7 +2237,7 @@
         title: '二维码',
         qrcodeType: 'qrcode',
         testData: 'qrcode',
-        hideTitle: true
+        hideTitle: "true"
       }
     }
   }

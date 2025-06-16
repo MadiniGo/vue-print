@@ -2483,20 +2483,9 @@ var hiprint = function (t) {
       return t.prototype.createTarget = function () {
         return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('标题显示隐藏')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n            <option value="false" >${i18n.__('显示')}</option>\n            <option value="true" >${i18n.__('隐藏')}</option>\n        </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
-        console.log('getValue',this.target.find("select").val())
-         if(false === this.target.find("select").val()){
-          return false
-         } 
-         if("false" == this.target.find("select").val()){
-          return false
-        }
-        if ("" == this.target.find("select").val() || undefined == this.target.find("select").val() ){
-          return !0
-        } 
-        if ("true" == this.target.find("select").val()){
-          return !0
-        } 
-       
+        // if ("true" == this.target.find("select").val()) return !0
+         var t = this.target.find("select").val();
+        return t || void 0;
       }, t.prototype.setValue = function (t) {
         this.target.find("select").val((null == t ? "" : t).toString());
       }, t.prototype.destroy = function () {
@@ -9046,7 +9035,8 @@ var hiprint = function (t) {
       }
 
       return C(e, t), e.prototype.getHideTitle = function () {
-        return null == this.hideTitle ? this.defaultOptions.hideTitle : this.hideTitle;
+        // return null == this.hideTitle ? this.defaultOptions.hideTitle : this.hideTitle;
+        return (null == this.hideTitle? this.defaultOptions.hideTitle === "true" : this.hideTitle === "true") ?? true;
       }, e.prototype.getTextType = function () {
         return (null == this.textType ? this.defaultOptions.textType : this.textType) || "text";
       }, e.prototype.getFontSize = function () {
@@ -9090,7 +9080,9 @@ var hiprint = function (t) {
         var i = t.call(this, e) || this;
         i.options = new O(n);
         if(i?.options?.textType && (i.options.textType === 'barcode' || i.options.textType === 'qrcode')){
-          i.options.setDefault({...new O(p.a.instance.text.default).getPrintElementOptionEntity(),hideTitle :i.options.hideTitle === false ? false : true})
+          let defaultHideTitle = "true"
+          console.log(i.options.hideTitle ,defaultHideTitle)
+          i.options.setDefault({...new O(p.a.instance.text.default).getPrintElementOptionEntity(),hideTitle:i.options.hideTitle || defaultHideTitle})
         }else{
           i.options.setDefault(new O(p.a.instance.text.default).getPrintElementOptionEntity())
         }
@@ -9139,7 +9131,10 @@ var hiprint = function (t) {
         var r = this.getFormatter(),
           a = t.find(".hiprint-printElement-text-content"),
           p = "";
-        p = this.getField() ? (this.options.getHideTitle() ? "" : e ? e + "：" : "") + hinnn.toUpperCase(this.options.upperCase, (r ? r(e, n, this.options, this._currenttemplateData, t) : n)) : n = hinnn.toUpperCase(this.options.upperCase,(r ? r(e, e, this.options, this._currenttemplateData, t) : e));
+          var getCodeHideTitle =  function () {
+              return (null == this.options.hideTitle ? true : this.options.hideTitle === "true") ?? true;
+          }
+        p = this.getField() ? (this.options.getHideTitle()? "" : e ? e + "：" : "") + hinnn.toUpperCase(this.options.upperCase, (r ? r(e, n, this.options, this._currenttemplateData, t) : n)) : n = hinnn.toUpperCase(this.options.upperCase,(r ? r(e, e, this.options, this._currenttemplateData, t) : e));
         var s = this.options.getTextType();
         if ("text" == s) a.html(p); else {
           if ("barcode" == s) {
@@ -9152,7 +9147,6 @@ var hiprint = function (t) {
             // pub-beta 0.0.57-beta22 移除插件通过 div 添加的文本元素，默认使用 JsBarcode 生成条形码文本
             a.html('<svg width="100%" display="block" height="100%" class="hibarcode_imgcode" preserveAspectRatio="none slice"></svg>');
             //#####################文本为barcode默认为hideTitle
-            // console.log(this)
             // this.options.hideTitle = true
             if (divMode) {
               a.append(`<div class="hibarcode_displayValue" style="white-space:nowrap">`);
@@ -9165,9 +9159,9 @@ var hiprint = function (t) {
                 lineColor: this.options.color || "#000000",
                 margin: 0,
                 height: parseInt(o.a.pt.toPx(this.options.getHeight() || 10).toString()),
-                displayValue: divMode ? false : this.options.hideTitle === false,
+                displayValue: divMode ? false : !getCodeHideTitle.call(this)
               }), a.find(".hibarcode_imgcode").attr("height", "100%"), a.find(".hibarcode_imgcode").attr("width", "100%"),
-              divMode && (this.options.hideTitle || a.find(".hibarcode_displayValue").html(n))): a.html("");
+              divMode && (a.find(".hibarcode_displayValue").html(getCodeHideTitle.call(this)? '' : n))): a.html("");
               // pub-beta 0.0.57-beta22 解决条形码自动宽度问题
               let svgWidth = a.find(".hibarcode_imgcode rect")[0].attributes.width.value
               svgWidth = Math.ceil(hinnn.px.toPt(svgWidth * 1.05));
@@ -9182,7 +9176,6 @@ var hiprint = function (t) {
 
           if ("qrcode" == s) {
             a.html("");
-
             try {
               if (n) {
                 a.css({
@@ -9190,7 +9183,7 @@ var hiprint = function (t) {
                   "flex-direction": "column"
                 })
                 var width = this.options.width
-                var height = this.options.height - (this.options.hideTitle === false ? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 : 0)
+                var height = this.options.height - (!getCodeHideTitle.call(this)? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 : 0)
                 var box = $('<div class="hiqrcode_imgcode"></div>').css({
                   "width": Math.min(width, height) + 'pt',
                   "height": Math.min(width, height) + 'pt',
@@ -9205,7 +9198,7 @@ var hiprint = function (t) {
                   useSVG: !0,
                   correctLevel: this.options.getQRcodeLevel()
                 }).makeCode(n);
-                a.html(box), this.options.hideTitle === false && a.append(`<div class="hiqrcode_displayValue" style="white-space:nowrap">${n}</div>`);
+                a.html(box), !getCodeHideTitle.call(this) && a.append(`<div class="hiqrcode_displayValue" style="white-space:nowrap;text-align:center">${n}</div>`);
               }
             } catch (t) {
               console.log(t), a.html(`${i18n.__('二维码生成失败')}`);
@@ -9471,7 +9464,7 @@ var hiprint = function (t) {
       function e(e, n) {
         var i = t.call(this, e) || this;
         i.options = new g.a(n);
-        i.options.setDefault({...new g.a(p.a.instance.barcode.default).getPrintElementOptionEntity(),hideTitle:i.options.hideTitle === false ? false : true});
+        i.options.setDefault({...new g.a(p.a.instance.barcode.default).getPrintElementOptionEntity()});
         return i;
       }
       return N(e, t), e.prototype.updateDesignViewFromOptions = function () {
@@ -9481,7 +9474,11 @@ var hiprint = function (t) {
         }
       }, e.prototype.getConfigOptions = function () {
         return p.a.instance.barcode;
-      }, e.prototype.getBarAutoWidth = function () {
+      },
+       e.prototype.getHideTitle = function () {
+        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" : this.options.hideTitle === "true") ?? true;
+      },
+       e.prototype.getBarAutoWidth = function () {
         return (null == this.options.barAutoWidth ? this.options.defaultOptions.barAutoWidth === "true" : this.options.barAutoWidth === "true") ?? true;
       }, e.prototype.onResize = function (e, n, i, o, r) {
         t.prototype.onResize.call(this, e, n, i, o, r);
@@ -9498,14 +9495,14 @@ var hiprint = function (t) {
         var content = designTarget.find('.hiprint-printElement-barcode-content')
         try {
           // 计算 barcode 的高度，判断是否需要减去 title，使 title 包含在元素内部
-          const height = o.a.pt.toMm(this.options.height - (this.options.hideTitle === false? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
+          const height = o.a.pt.toMm(this.options.height - (!this.getHideTitle()? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
           var barcode = bwipjs.toSVG({
             bcid: this.options.barcodeType || 'code128',
             text: text || this.options.testData || this.options.title,
             scale: this.options.barWidth || 1,
             width: !this.getBarAutoWidth() ? parseInt(o.a.pt.toMm(this.options.getWidth())) : '',
             height: parseInt(height),
-            includetext: this.options.hideTitle === false,
+            includetext: false,
             barcolor: this.options.barColor || "#000",
           })
           // pub-beta 0.0.57-beta22 优化了条码自动调整宽度的逻辑，title 文本改为使用 bwipjs 文本内部实现
@@ -9520,13 +9517,13 @@ var hiprint = function (t) {
             this.options.width = svgWidth;
           }
           content.html(barcode)
-          // if (this.options.hideTitle === false) {
-          //   const titleText = title ? title + ( text ? ':' : '' ) : '';
-          //   const textAlign = this.options.textAlign || 'center';
-          //   // 支持type为barcode的textAlign属性
-          //   const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
-          //   content.append($(`<div class="hiprint-printElement-barcode-content-title" style="${ textStyle }">${ titleText }${ text }</div>`))
-          // }
+          if (!this.getHideTitle()) {
+            const titleText = title ? title + ( text ? ':' : '' ) : '';
+            const textAlign = this.options.textAlign || 'center';
+            // 支持type为barcode的textAlign属性
+            const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
+            content.append($(`<div class="hiprint-printElement-barcode-content-title" style="${ textStyle }">${ text }</div>`))
+          }
         } catch (error) {
           console.error(error)
           content.html($(`<div>${i18n.__('条形码生成失败')}</div>`))
@@ -9547,8 +9544,7 @@ var hiprint = function (t) {
       function e(e, n) {
         var i = t.call(this, e) || this;
         i.options = new g.a(n);
-        i.options.setDefault({...new g.a(p.a.instance.qrcode.default).getPrintElementOptionEntity(),
-                            hideTitle:i.options.hideTitle === false ? false : true});
+        i.options.setDefault({...new g.a(p.a.instance.qrcode.default).getPrintElementOptionEntity()});
         return i;
       }
       return N(e, t), e.prototype.updateDesignViewFromOptions = function () {
@@ -9563,7 +9559,9 @@ var hiprint = function (t) {
         this.initQrcode(this.designTarget, this.getTitle(), this.getData())
       }, e.prototype.getTitle = function () {
         return this.options.title || this.printElementType.title;
-      }, e.prototype.getData = function (t) {
+      },  e.prototype.getHideTitle = function () {
+        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" : this.options.hideTitle === "true") ?? true;
+      },e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();
         e = t ? f ? f.split('.').reduce((a, c) => a ? a[c] : t ? t[c] : "", !1) || "" : "" : this.options.testData || this.printElementType.getData() || ""
@@ -9592,12 +9590,12 @@ var hiprint = function (t) {
             barcolor: this.options.barColor || "#000",
           })
           content.html($(qrcode))
-          if (!this.options.hideTitle) {
+          if (!this.getHideTitle()) {
             const titleText = title ? title + ( text ? ':' : '' ) : '';
             const textAlign = this.options.textAlign || 'center';
             // 支持type为qrcode的textAlign属性
             const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
-            content.append($(`<div class="hiprint-printElement-qrcode-content-title" style="${ textStyle }">${ titleText }${ text }</div>`))
+            content.append($(`<div class="hiprint-printElement-qrcode-content-title" style="${ textStyle }">${ text }</div>`))
           }
         } catch (error) {
           console.error(error)
