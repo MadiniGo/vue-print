@@ -8634,7 +8634,7 @@ var hiprint = function (t) {
       }
 
       return y(e, t), e.prototype.getHideTitle = function () {
-        return null == this.hideTitle ? this.defaultOptions.hideTitle : this.hideTitle;
+        return null == this.hideTitle ? this.defaultOptions.hideTitle : this.hideTitle === true || this.hideTitle === "true";
       }, e;
     }(g.a),
     E = n(8),
@@ -9036,7 +9036,7 @@ var hiprint = function (t) {
 
       return C(e, t), e.prototype.getHideTitle = function () {
         // return null == this.hideTitle ? this.defaultOptions.hideTitle : this.hideTitle;
-        return (null == this.hideTitle? this.defaultOptions.hideTitle === "true" : this.hideTitle === "true") ?? true;
+        return (null == this.hideTitle? this.defaultOptions.hideTitle === "true" : this.hideTitle === true || this.hideTitle === "true") ?? true;
       }, e.prototype.getTextType = function () {
         return (null == this.textType ? this.defaultOptions.textType : this.textType) || "text";
       }, e.prototype.getFontSize = function () {
@@ -9132,7 +9132,7 @@ var hiprint = function (t) {
           a = t.find(".hiprint-printElement-text-content"),
           p = "";
           var getCodeHideTitle =  function () {
-              return (null == this.options.hideTitle ? true : this.options.hideTitle === "true") ?? true;
+              return (null == this.options.hideTitle ? true : this.options.hideTitle === true || this.options.hideTitle === "true") ?? true;
           }
         p = this.getField() ? (this.options.getHideTitle()? "" : e ? e + "：" : "") + hinnn.toUpperCase(this.options.upperCase, (r ? r(e, n, this.options, this._currenttemplateData, t) : n)) : n = hinnn.toUpperCase(this.options.upperCase,(r ? r(e, e, this.options, this._currenttemplateData, t) : e));
         var s = this.options.getTextType();
@@ -9476,7 +9476,7 @@ var hiprint = function (t) {
         return p.a.instance.barcode;
       },
        e.prototype.getHideTitle = function () {
-        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" : this.options.hideTitle === "true") ?? true;
+        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" :this.options.hideTitle === true || this.options.hideTitle === "true") ?? true;
       },
        e.prototype.getBarAutoWidth = function () {
         return (null == this.options.barAutoWidth ? this.options.defaultOptions.barAutoWidth === "true" : this.options.barAutoWidth === "true") ?? true;
@@ -9484,7 +9484,7 @@ var hiprint = function (t) {
         t.prototype.onResize.call(this, e, n, i, o, r);
         this.initBarcode(this.designTarget, this.getTitle(), this.getData())
       }, e.prototype.getTitle = function () {
-        return this.options.title || this.printElementType.title;
+        return this.options.title  || this.printElementType.title;
       }, e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();
@@ -9560,7 +9560,7 @@ var hiprint = function (t) {
       }, e.prototype.getTitle = function () {
         return this.options.title || this.printElementType.title;
       },  e.prototype.getHideTitle = function () {
-        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" : this.options.hideTitle === "true") ?? true;
+        return (null == this.options.hideTitle ? this.options.defaultOptions.hideTitle === "true" :this.options.hideTitle === true || this.options.hideTitle === "true") ?? true;
       },e.prototype.getData = function (t) {
         var e = void 0;
         var f = this.getField();

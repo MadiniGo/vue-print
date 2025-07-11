@@ -2050,9 +2050,9 @@
       default: {
         width: 160,
         height: 40,
-        title: '条形码',
+        title: '',
         barcodeType: 'code128',
-        testData: '123333333',
+        testData: '',
         hideTitle:"true",
         barAutoWidth: 'true' 
       }
@@ -2234,9 +2234,9 @@
       default: {
         width: 80,
         height: 80,
-        title: '二维码',
+        title: '',
         qrcodeType: 'qrcode',
-        testData: 'qrcode',
+        testData: '',
         hideTitle: "true"
       }
     }
