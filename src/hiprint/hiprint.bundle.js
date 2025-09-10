@@ -9142,6 +9142,8 @@ var hiprint = function (t) {
               "display": "flex",
               "flex-direction": "column"
             })
+              console.log('this.options.getbarcodeMode()', this.options.getbarcodeMode())
+
             // 分离显示条形码文本
             var divMode = this.options.getBarTextMode() == 'text';
             // pub-beta 0.0.57-beta22 移除插件通过 div 添加的文本元素，默认使用 JsBarcode 生成条形码文本
@@ -9495,15 +9497,17 @@ var hiprint = function (t) {
         var content = designTarget.find('.hiprint-printElement-barcode-content')
         try {
           // 计算 barcode 的高度，判断是否需要减去 title，使 title 包含在元素内部
-          const height = o.a.pt.toMm(this.options.height - (!this.getHideTitle()? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
+          let includetext = this.options.barcodeType &&( this.options.barcodeType.toLowerCase().includes('ean') ||  this.options.barcodeType.toLowerCase().includes('is')) ? true : false; 
+          const height = o.a.pt.toMm(this.options.height - (!this.getHideTitle() && !includetext ? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
           var barcode = bwipjs.toSVG({
             bcid: this.options.barcodeType || 'code128',
             text: text || this.options.testData || this.options.title,
             scale: this.options.barWidth || 1,
             width: !this.getBarAutoWidth() ? parseInt(o.a.pt.toMm(this.options.getWidth())) : '',
             height: parseInt(height),
-            includetext: false,
+            includetext: includetext,
             barcolor: this.options.barColor || "#000",
+            textxalign:  'center'
           })
           // pub-beta 0.0.57-beta22 优化了条码自动调整宽度的逻辑，title 文本改为使用 bwipjs 文本内部实现
           barcode = $(barcode);
@@ -9517,7 +9521,7 @@ var hiprint = function (t) {
             this.options.width = svgWidth;
           }
           content.html(barcode)
-          if (!this.getHideTitle()) {
+          if (!this.getHideTitle() && !includetext) {
             const titleText = title ? title + ( text ? ':' : '' ) : '';
             const textAlign = this.options.textAlign || 'center';
             // 支持type为barcode的textAlign属性
