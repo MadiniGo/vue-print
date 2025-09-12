@@ -72,7 +72,7 @@ window.$ = window.jQuery = $;
 window.autoConnect = true;
 window.io = io;
 var new_select_options = '';
-for(let i = 24; i <= 60; i = i + 2){
+for(let i = 0.75; i <= 60; i = i + 0.25){
   new_select_options += `<option value="${i}" >${i}pt</option>\n`
 }
 var languages = {}
@@ -2339,7 +2339,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('字体行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n        <option value="22.5" >22.5pt</option>\n        <option value="23.25" >23.25pt</option>\n        <option value="24" >24pt</option>\n        <option value="24.75" >24.75pt</option>\n        <option value="25.5" >25.5pt</option>\n        <option value="26.25" >26.25pt</option>\n        <option value="27" >27pt</option>\n        <option value="27.75" >27.75pt</option>\n        <option value="28.5" >28.5pt</option>\n        <option value="29.25" >29.25pt</option>\n        <option value="30" >30pt</option>\n        <option value="30.75" >30.75pt</option>\n        <option value="31.5" >31.5pt</option>\n        <option value="32.25" >32.25pt</option>\n        <option value="33" >33pt</option>\n        <option value="33.75" >33.75pt</option>\n        <option value="34.5" >34.5pt</option>\n        <option value="35.25" >35.25pt</option>\n        <option value="36" >36pt</option>\n     ${new_select_options}   </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('字体行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n           ${new_select_options}   </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -2394,8 +2394,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('字体大小')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n    
-        ${new_select_options}
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('字体大小')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        ${new_select_options}
         </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
@@ -2622,7 +2621,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('表头行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n       \n        <option value="" >${i18n.__('默认')}</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n   ${new_select_options}        </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('表头行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n       \n        <option value="" >${i18n.__('默认')}</option>\n        ${new_select_options}        </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -2648,7 +2647,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('表头字体大小')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n  ${new_select_options}  </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('表头字体大小')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        ${new_select_options}  </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -2723,7 +2722,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n            ${i18n.__('表体行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n            <select class="auto-submit">\n            <option value="" >${i18n.__('默认')}</option>\n            <option value="6" >6pt</option>\n            <option value="6.75" >6.75pt</option>\n            <option value="7.5" >7.5pt</option>\n            <option value="8.25" >8.25pt</option>\n            <option value="9" >9pt</option>\n            <option value="9.75" >9.75pt</option>\n            <option value="10.5" >10.5pt</option>\n            <option value="11.25" >11.25pt</option>\n            <option value="12" >12pt</option>\n            <option value="12.75" >12.75pt</option>\n            <option value="13.5" >13.5pt</option>\n            <option value="14.25" >14.25pt</option>\n            <option value="15" >15pt</option>\n            <option value="15.75" >15.75pt</option>\n            <option value="16.5" >16.5pt</option>\n            <option value="17.25" >17.25pt</option>\n            <option value="18" >18pt</option>\n            <option value="18.75" >18.75pt</option>\n            <option value="19.5" >19.5pt</option>\n            <option value="20.25" >20.25pt</option>\n            <option value="21" >21pt</option>\n            <option value="21.75" >21.75pt</option>\n           ${new_select_options}       </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n            ${i18n.__('表体行高')}\n        </div>\n        <div class="hiprint-option-item-field">\n            <select class="auto-submit">\n            <option value="" >${i18n.__('默认')}</option>\n     ${new_select_options}       </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -3866,7 +3865,7 @@ var hiprint = function (t) {
       return t.prototype.css = function (t, e) {
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('每行缩进')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n        ${new_select_options}     </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('每行缩进')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n            ${new_select_options}     </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -4355,7 +4354,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('左内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n     ${new_select_options}   </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('左内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n             ${new_select_options}   </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -4381,7 +4380,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('上内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n   ${new_select_options}     </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('上内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n           ${new_select_options}     </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -4407,7 +4406,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('右内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n ${new_select_options}        </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('右内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n         ${new_select_options}        </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -4433,7 +4432,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('下内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n    ${new_select_options}    </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('下内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n            ${new_select_options}    </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -5044,7 +5043,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('左内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n      ${new_select_options}  </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('左内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n              ${new_select_options}  </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -5070,7 +5069,7 @@ var hiprint = function (t) {
 
         return null;
       }, t.prototype.createTarget = function () {
-        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('右内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n        <option value="0.75" >0.75pt</option>\n        <option value="1.5" >1.5pt</option>\n        <option value="2.25" >2.25pt</option>\n        <option value="3" >3pt</option>\n        <option value="3.75" >3.75pt</option>\n        <option value="4.5" >4.5pt</option>\n        <option value="5.25" >5.25pt</option>\n        <option value="6" >6pt</option>\n        <option value="6.75" >6.75pt</option>\n        <option value="7.5" >7.5pt</option>\n        <option value="8.25" >8.25pt</option>\n        <option value="9" >9pt</option>\n        <option value="9.75" >9.75pt</option>\n        <option value="10.5" >10.5pt</option>\n        <option value="11.25" >11.25pt</option>\n        <option value="12" >12pt</option>\n        <option value="12.75" >12.75pt</option>\n        <option value="13.5" >13.5pt</option>\n        <option value="14.25" >14.25pt</option>\n        <option value="15" >15pt</option>\n        <option value="15.75" >15.75pt</option>\n        <option value="16.5" >16.5pt</option>\n        <option value="17.25" >17.25pt</option>\n        <option value="18" >18pt</option>\n        <option value="18.75" >18.75pt</option>\n        <option value="19.5" >19.5pt</option>\n        <option value="20.25" >20.25pt</option>\n        <option value="21" >21pt</option>\n        <option value="21.75" >21.75pt</option>\n    ${new_select_options}    </select>\n        </div>\n    </div>`), this.target;
+        return this.target = $(`<div class="hiprint-option-item">\n        <div class="hiprint-option-item-label">\n        ${i18n.__('右内边距')}\n        </div>\n        <div class="hiprint-option-item-field">\n        <select class="auto-submit">\n        <option value="" >${i18n.__('默认')}</option>\n            ${new_select_options}    </select>\n        </div>\n    </div>`), this.target;
       }, t.prototype.getValue = function () {
         var t = this.target.find("select").val();
         if (t) return parseFloat(t.toString());
@@ -5963,12 +5962,13 @@ var hiprint = function (t) {
           d.find("tbody").append(curRow);
           let height = d.find("tbody tr").outerHeight();
           a.prepend(curRow);
-          return {
-            target: $(`<div style="position:absolute;background: red;color: white;padding: 0px 4px;">${i18n.__('没有足够空间,显示下方内容, 可分页高度')}: `+ p +`px < ${i18n.__('当前需要高度')}: `+ height +'px</div>').append(curRow.css("background", "blue")),
-            length: m,
-            height: _assets_plugins_hinnn__WEBPACK_IMPORTED_MODULE_3__.a.px.toPt(s),
-            isEnd: !1
-          }
+          //todo暂时屏蔽掉这个提示
+          // return {
+          //   target: $(`<div style="position:absolute;background: red;color: white;padding: 0px 4px;">${i18n.__('没有足够空间,显示下方内容, 可分页高度')}: `+ p +`px < ${i18n.__('当前需要高度')}: `+ height +'px</div>').append(curRow.css("background", "blue")),
+          //   length: m,
+          //   height: _assets_plugins_hinnn__WEBPACK_IMPORTED_MODULE_3__.a.px.toPt(s),
+          //   isEnd: !1
+          // }
         }
         // 方便调试看 值...
         var zz = 0 == a.find("tr").length ? 0 == m && r ? {
@@ -9142,8 +9142,6 @@ var hiprint = function (t) {
               "display": "flex",
               "flex-direction": "column"
             })
-              console.log('this.options.getbarcodeMode()', this.options.getbarcodeMode())
-
             // 分离显示条形码文本
             var divMode = this.options.getBarTextMode() == 'text';
             // pub-beta 0.0.57-beta22 移除插件通过 div 添加的文本元素，默认使用 JsBarcode 生成条形码文本
@@ -9497,36 +9495,77 @@ var hiprint = function (t) {
         var content = designTarget.find('.hiprint-printElement-barcode-content')
         try {
           // 计算 barcode 的高度，判断是否需要减去 title，使 title 包含在元素内部
-          let includetext = this.options.barcodeType &&( this.options.barcodeType.toLowerCase().includes('ean') ||  this.options.barcodeType.toLowerCase().includes('is')) ? true : false; 
-          const height = o.a.pt.toMm(this.options.height - (!this.getHideTitle() && !includetext ? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
-          var barcode = bwipjs.toSVG({
-            bcid: this.options.barcodeType || 'code128',
-            text: text || this.options.testData || this.options.title,
-            scale: this.options.barWidth || 1,
-            width: !this.getBarAutoWidth() ? parseInt(o.a.pt.toMm(this.options.getWidth())) : '',
-            height: parseInt(height),
-            includetext: includetext,
-            barcolor: this.options.barColor || "#000",
-            textxalign:  'center'
-          })
-          // pub-beta 0.0.57-beta22 优化了条码自动调整宽度的逻辑，title 文本改为使用 bwipjs 文本内部实现
-          barcode = $(barcode);
-          // pub-beta 0.0.57-beta22 svg 元素需要添加 preserveAspectRatio 属性，使其横向可以自适应缩放
-          barcode.attr("preserveAspectRatio", "none slice")
-          let svgWidth = barcode[0].attributes.viewBox.value.split(" ")[2]; // 通过 viewBox 属性获取 bwipjs 内部生成的 svg 宽度
-          svgWidth = Math.ceil(hinnn.px.toPt(svgWidth * 1.05));
-          if (this.getBarAutoWidth() && svgWidth > this.options.width) {
-            content.parent().css("width", svgWidth + 'pt')
-            barcode.css("height", "100%");
-            this.options.width = svgWidth;
+          if(!this.options.letterSpacing){
+            this.options.letterSpacing = 4;
           }
-          content.html(barcode)
-          if (!this.getHideTitle() && !includetext) {
-            const titleText = title ? title + ( text ? ':' : '' ) : '';
-            const textAlign = this.options.textAlign || 'center';
-            // 支持type为barcode的textAlign属性
-            const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
-            content.append($(`<div class="hiprint-printElement-barcode-content-title" style="${ textStyle }">${ text }</div>`))
+          if(!this.options.fontSize){
+            this.options.fontSize = 8;
+          }
+          if(!this.options.fontFamily){
+            this.options.fontFamily = '黑体'
+          }
+          let includetext = this.options.barcodeType  && this.options.barcodeType.toLowerCase().includes('ean')  ? true : false; 
+          const height = o.a.pt.toMm(this.options.height - (!this.getHideTitle() || includetext ? this.options.lineHeight ?? (this.options.fontSize ?? 10.5) * 1.5 :0));
+          const barWidth = includetext? this.options.barWidth || 2 :this.options.barWidth || 1;
+        
+          if(!includetext){
+            var barcode = bwipjs.toSVG({
+              bcid: this.options.barcodeType || 'code128',
+              text: text || this.options.testData || this.options.title,
+              scale: barWidth,
+              width: !this.getBarAutoWidth() ? parseInt(o.a.pt.toMm(this.options.getWidth())) : '',
+              height: parseInt(height),
+              barcolor: this.options.barColor || "#000"
+            })
+            // pub-beta 0.0.57-beta22 优化了条码自动调整宽度的逻辑，title 文本改为使用 bwipjs 文本内部实现
+            barcode = $(barcode);
+            // pub-beta 0.0.57-beta22 svg 元素需要添加 preserveAspectRatio 属性，使其横向可以自适应缩放
+            barcode.attr("preserveAspectRatio", "none slice")
+            let svgWidth = barcode[0].attributes.viewBox.value.split(" ")[2]; // 通过 viewBox 属性获取 bwipjs 内部生成的 svg 宽度
+            svgWidth = Math.ceil(hinnn.px.toPt(svgWidth * 1.05));
+            if (this.getBarAutoWidth() && svgWidth > this.options.width) {
+              content.parent().css("width", svgWidth + 'pt')
+              barcode.css("height", "100%");
+              this.options.width = svgWidth;
+            }
+            content.html(barcode)
+            if (!this.getHideTitle()) {
+              const titleText = title ? title + ( text ? ':' : '' ) : '';
+              const textAlign = this.options.textAlign || 'center';
+              // 支持type为barcode的textAlign属性
+              const textStyle = textAlign === 'justify' ? 'text-align-last: justify;text-justify: distribute-all-lines;' : `text-align: ${ textAlign };`
+              content.append($(`<div class="hiprint-printElement-barcode-content-title" style="${ textStyle }">${ text }</div>`))
+            }
+          }else{
+            content.html($('<svg width="100%" display="block" height="100%" class="hiprint-printElement-barcode-svg" preserveAspectRatio="none slice"></svg>'));
+            // console.log('height',  height ,this.options.fontSize,this.options );
+            const renderSvgElment = content.find('.hiprint-printElement-barcode-svg');
+            JsBarcode(renderSvgElment[0], text || this.options.testData || 'testData', {
+              text: text || this.options.testData || this.options.title,
+              format: this.options.barcodeType,
+              textMargin: 0,
+              lineColor: this.options.color || "",
+              margin: 0,
+              width:2,
+              fontSize:this.options.fontSize,
+              font:this.options.fontFamily || '黑体',
+              fontOptions:this.options.fontWeight || '',
+              height: 30,
+              displayValue: includetext ? true : !this.getHideTitle() ,
+            });
+            renderSvgElment.attr("height", "100%");
+            renderSvgElment.attr("width", "100%");
+            const firstSVGCode = $('.hiprint-printElement-barcode-svg').find('g')?.[0];
+            if(firstSVGCode){
+              $(firstSVGCode).attr('transform','translate(10, 0)');
+            }
+            // pub-beta 0.0.57-beta22 解决条形码自动宽度问题
+            let svgWidth = renderSvgElment.attr("width");
+            svgWidth = Math.ceil(hinnn.px.toPt(svgWidth * 1.05));
+            if (this.getBarAutoWidth() && svgWidth > this.options.width) {
+              renderSvgElment.parent().css("width", svgWidth + 'pt')
+              this.options.width = svgWidth;
+            }
           }
         } catch (error) {
           console.error(error)
