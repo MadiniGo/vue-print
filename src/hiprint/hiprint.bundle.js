@@ -67,7 +67,7 @@ import Nzh from "nzh/dist/nzh.min.js";
 import Canvg from 'canvg';
 // 默认自定义拖拽列表
 import defaultTypeProvider from "./etypes/default-etyps-provider";
-
+import {cloneDeep} from "/utils/index.js"
 window.$ = window.jQuery = $;
 window.autoConnect = true;
 window.io = io;
@@ -6036,7 +6036,7 @@ var hiprint = function (t) {
         };
         var f = this.getField();
         var e = f ? f.split('.').reduce((a, c) => a ? a[c] : t ? t[c] : "", !1) || "" : "";
-        return e ? JSON.parse(JSON.stringify(e)) : [];
+        return e ? cloneDeep(e) : [];
       }, TablePrintElement.prototype.onResize = function (t, e, n, i, o) {
         _super.prototype.updateSizeAndPositionOptions.call(this, o, i, n, e), _table_TableExcelHelper__WEBPACK_IMPORTED_MODULE_6__.a.resizeTableCellWidth(this.designTarget, this.getColumns(), this.options.getWidth());
       }, TablePrintElement.prototype.getReizeableShowPoints = function () {

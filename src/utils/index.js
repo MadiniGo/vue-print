@@ -24,3 +24,39 @@ export function decodeVer(ver) {
   matchObj.verVal = `${matchObj.mainVal}.${matchObj.appendVal}` * 1;
   return matchObj;
 }
+
+export function cloneDeep(x) {
+  const root = Array.isArray(x) ? [] : {};
+  const loopList = [{
+    parent: root,
+    key: undefined,
+    data: x,
+  }];
+
+  while (loopList.length) {
+    const node = loopList.pop();
+    const parent = node.parent;
+    const key = node.key;
+    const data = node.data;
+
+    let res = parent;
+    if (typeof key !== 'undefined') {
+      res = parent[key] = Array.isArray(data) ? [] : {};
+    }
+
+    for (let k in data) {
+      if (data.hasOwnProperty(k)) {
+        if (typeof data[k] === 'object' && data[k] !== null) {
+          loopList.push({
+            parent: res,
+            key: k,
+            data: data[k],
+          });
+        } else {
+          res[k] = data[k];
+        }
+      }
+    }
+  }
+  return root;
+}
