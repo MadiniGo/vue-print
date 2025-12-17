@@ -67,7 +67,7 @@ import Nzh from "nzh/dist/nzh.min.js";
 import Canvg from 'canvg';
 // 默认自定义拖拽列表
 import defaultTypeProvider from "./etypes/default-etyps-provider";
-import {cloneDeep} from "/utils/index.js"
+import {cloneDeep} from "../utils/index.js"
 window.$ = window.jQuery = $;
 window.autoConnect = true;
 window.io = io;
