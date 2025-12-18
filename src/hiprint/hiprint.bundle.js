@@ -10965,7 +10965,8 @@ var hiprint = function (t) {
       }, t.prototype.getPaperType = function (t) {
         return null == t && (t = 0), this.printPanels[0].paperType;
       }, t.prototype.getOrient = function (t) {
-        return null == t && (t = 0), this.printPanels[t].height > this.printPanels[t].width ? 1 : 2;
+        return null == t && (t = 0), this.printPanels[t]? this.printPanels[t].orient || 1 : 1;
+        // , this.printPanels[t].height > this.printPanels[t].width ? 1 : 2;
       }, t.prototype.getPrintStyle = function (t) {
         return this.printPanels[t].getPrintStyle();
       }, t.prototype.print = function (t, e, o) {
@@ -10983,6 +10984,9 @@ var hiprint = function (t) {
           if (r.length <= 0) {
             throw new Error("请在 入口文件(index.html) 中引入 print-lock.css. 注意: link[media=\"print\"]");
             return;
+          }
+          if(this.getOrient(0) == 2){
+            e.landscape = true;
           }
           r.each(function (a, p) {
             var s = new XMLHttpRequest();
