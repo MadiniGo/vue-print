@@ -10965,7 +10965,8 @@ var hiprint = function (t) {
       }, t.prototype.getPaperType = function (t) {
         return null == t && (t = 0), this.printPanels[0].paperType;
       }, t.prototype.getOrient = function (t) {
-        return null == t && (t = 0), this.printPanels[t]? this.printPanels[t].orient || 1 : 1;
+        return null == t && (t = 0)
+        ,this.printPanels?.[0].orient? this.printPanels[0].orient : this.printPanels[t].height > this.printPanels[t].width ? 1 : 2;
         // , this.printPanels[t].height > this.printPanels[t].width ? 1 : 2;
       }, t.prototype.getPrintStyle = function (t) {
         return this.printPanels[t].getPrintStyle();
